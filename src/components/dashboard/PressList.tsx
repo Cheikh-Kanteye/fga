@@ -328,7 +328,7 @@ const PressList: React.FC = () => {
                         <Trash className="h-5 w-5" />
                       </button>
                       <Link
-                        to={"/dashboard/presses/" + press.id}
+                        to={"/dashboard/press/" + press.id}
                         className="text-blue-600 hover:text-blue-900"
                         title="Voir infos"
                       >
