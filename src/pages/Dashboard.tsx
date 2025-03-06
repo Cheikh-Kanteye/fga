@@ -25,7 +25,7 @@ const Dashboard: React.FC = () => {
           onSectionChange={setActiveSection}
         />
 
-        <div className="flex-1 h-screen hover:overflow-y-auto pb-10 scrollbar">
+        <div className="flex-1 h-screen  overflow-y-auto pb-10 scrollbar">
           {activeSection === "overview" && <DashboardOverview />}
           {activeSection === "participants" && <ParticipantsList />}
           {activeSection === "panelists" && <PanelistsList />}
