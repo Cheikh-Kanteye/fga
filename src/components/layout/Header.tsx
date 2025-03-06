@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Logo from "../ui/Logo";
 import { Menu, X } from "lucide-react";
+import i18n from "@/i18n";
 
 interface NavLink {
   name: string;
@@ -9,6 +11,7 @@ interface NavLink {
 }
 
 const Header: React.FC = () => {
+  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
@@ -28,14 +31,16 @@ const Header: React.FC = () => {
     setIsMenuOpen(false);
   }, [location]);
 
+  const toggleLanguage = () => {
+    i18n.changeLanguage(i18n.language === "fr" ? "en" : "fr");
+  };
+
   const navLinks: NavLink[] = useMemo(
     () => [
-      { name: "Accueil", path: "/" },
-      // { name: "À propos", path: "#about" },
-      // { name: "Programme", path: "#program" },
-      { name: "S'inscrire", path: "/register" },
+      { name: t("nav.home"), path: "/" },
+      { name: t("nav.register"), path: "/register" },
     ],
-    []
+    [t]
   );
 
   const isActive = useCallback(
@@ -44,7 +49,6 @@ const Header: React.FC = () => {
         const [routePath, hash] = path.split("#");
         return location.pathname === routePath && location.hash === `#${hash}`;
       }
-
       if (location.pathname === "/" && location.hash) {
         return false;
       }
@@ -64,20 +68,6 @@ const Header: React.FC = () => {
       const inactiveClasses = mobile
         ? "text-galien-blue hover:bg-galien-secondary/30"
         : "text-galien-blue hover:text-galien-gold";
-
-      if (link.path.startsWith("#")) {
-        return (
-          <a
-            key={link.name}
-            href={link.path}
-            className={`${baseClasses} ${
-              isActive(link.path) ? activeClasses : inactiveClasses
-            }`}
-          >
-            {link.name}
-          </a>
-        );
-      }
 
       return (
         <Link
@@ -108,8 +98,14 @@ const Header: React.FC = () => {
           <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => renderLink(link))}
             <Link to="/dashboard" className="btn-primary py-2 text-sm">
-              Dashboard
+              {t("nav.dashboard")}
             </Link>
+            <button
+              onClick={toggleLanguage}
+              className="ml-4 px-3 py-2 bg-gray-200 rounded-md text-sm"
+            >
+              {i18n.language === "fr" ? "🇺🇸 English" : "🇫🇷 Français"}
+            </button>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -135,8 +131,14 @@ const Header: React.FC = () => {
             to="/dashboard"
             className="px-4 py-2 bg-galien-blue text-white rounded-md"
           >
-            Dashboard
+            {t("nav.dashboard")}
           </Link>
+          <button
+            onClick={toggleLanguage}
+            className="mt-4 px-4 py-2 bg-gray-200 rounded-md text-center"
+          >
+            {i18n.language === "fr" ? "🇺🇸 English" : "🇫🇷 Français"}
+          </button>
         </nav>
       </div>
     </header>

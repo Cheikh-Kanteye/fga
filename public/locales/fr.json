@@ -1,0 +1,19 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "register": "S'inscrire",
+    "dashboard": "Tableau de bord"
+  },
+  "hero": {
+    "title": "Façonnons l'avenir de la santé en Afrique ensemble",
+    "subtitle": "Rejoignez le prestigieux Forum Galien Afrique, où innovation, science et santé se rencontrent pour transformer l'avenir du continent.",
+    "cta_register": "S'inscrire maintenant",
+    "cta_program": "Voir le programme",
+    "open_registrations": "Inscriptions ouvertes",
+    "limited_seats": "Places limitées",
+    "date": "15-17 Nov 2024",
+    "location": "King Fahd Place, Dakar, Sénégal",
+    "participants": "500+ attendus",
+    "speakers": "30+ experts"
+  }
+}

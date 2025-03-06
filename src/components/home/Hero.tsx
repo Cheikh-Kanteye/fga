@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const Hero: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="relative min-h-screen flex items-center pt-20">
       {/* Background elements */}
@@ -18,14 +21,10 @@ const Hero: React.FC = () => {
               Forum Galien Afrique 2024
             </div>
 
-            <h1 className="heading-xl">
-              Façonnons l'avenir de la santé en Afrique ensemble
-            </h1>
+            <h1 className="heading-xl">{t("hero.title")}</h1>
 
             <p className="text-lg md:text-xl text-gray-600 max-w-xl">
-              Rejoignez le prestigieux Forum Galien Afrique, où innovation,
-              science et santé se rencontrent pour transformer l'avenir du
-              continent.
+              {t("hero.subtitle")}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -33,24 +32,25 @@ const Hero: React.FC = () => {
                 to="/register"
                 className="btn-primary flex items-center justify-center gap-2"
               >
-                S'inscrire <ArrowRight size={18} />
+                {t("hero.cta_register")} <ArrowRight size={18} />
               </Link>
-              <Link
-                to="/#program"
+              <a
+                href="https://forumgalienafrique.com/"
+                target="blank"
                 className="btn-secondary flex items-center justify-center gap-2"
               >
-                Voir le programme
-              </Link>
+                {t("hero.cta_program")}
+              </a>
             </div>
 
             <div className="flex items-center gap-6 text-sm text-gray-500 pt-4">
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 rounded-full bg-green-500"></div>
-                <span>Inscriptions ouvertes</span>
+                <span>{t("hero.open_registrations")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 rounded-full bg-galien-blue"></div>
-                <span>Places limitées</span>
+                <span>{t("hero.limited_seats")}</span>
               </div>
             </div>
           </div>
@@ -73,21 +73,27 @@ const Hero: React.FC = () => {
               <div className="mt-6 grid grid-cols-2 gap-4">
                 <div className="bg-white p-4 rounded-lg shadow-sm">
                   <p className="text-sm text-gray-500">Date</p>
-                  <p className="font-medium text-galien-blue">15-17 Nov 2024</p>
+                  <p className="font-medium text-galien-blue">
+                    {t("hero.date")}
+                  </p>
                 </div>
                 <div className="bg-white p-4 rounded-lg shadow-sm">
                   <p className="text-sm text-gray-500">Lieu</p>
                   <p className="font-medium text-galien-blue">
-                    King Fahd Place, Dakar, Sénégal
+                    {t("hero.location")}
                   </p>
                 </div>
                 <div className="bg-white p-4 rounded-lg shadow-sm">
                   <p className="text-sm text-gray-500">Participants</p>
-                  <p className="font-medium text-galien-blue">500+ attendus</p>
+                  <p className="font-medium text-galien-blue">
+                    {t("hero.participants")}
+                  </p>
                 </div>
                 <div className="bg-white p-4 rounded-lg shadow-sm">
                   <p className="text-sm text-gray-500">Speakers</p>
-                  <p className="font-medium text-galien-blue">30+ experts</p>
+                  <p className="font-medium text-galien-blue">
+                    {t("hero.speakers")}
+                  </p>
                 </div>
               </div>
             </div>

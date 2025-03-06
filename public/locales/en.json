@@ -1,0 +1,19 @@
+{
+  "nav": {
+    "home": "Home",
+    "register": "Register",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "title": "Shaping the Future of Healthcare in Africa Together",
+    "subtitle": "Join the prestigious Galien Forum Africa, where innovation, science, and health converge to transform the future of the continent.",
+    "cta_register": "Register Now",
+    "cta_program": "See the Program",
+    "open_registrations": "Registrations Open",
+    "limited_seats": "Limited Seats",
+    "date": "15-17 Nov 2024",
+    "location": "King Fahd Place, Dakar, Senegal",
+    "participants": "500+ Expected",
+    "speakers": "30+ Experts"
+  }
+}

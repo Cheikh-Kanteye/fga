@@ -37,7 +37,6 @@ export interface TermsAndSubmitProps {
   step: number;
   getMaxSteps: () => number;
   isSubmittingState: boolean;
-  errors: FieldErrors<FormData>;
   onPrev: () => void;
 }
 
