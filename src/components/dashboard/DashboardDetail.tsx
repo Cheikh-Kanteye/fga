@@ -13,7 +13,7 @@ const DashboardDetail = () => {
           onSectionChange={setActiveSection}
         />
 
-        <div className="flex-1 h-screen hover:overflow-y-auto pb-10 scrollbar">
+        <div className="flex-1 h-screen overflow-y-auto pb-10 scrollbar">
           <ParticipantDetails />
         </div>
       </div>
