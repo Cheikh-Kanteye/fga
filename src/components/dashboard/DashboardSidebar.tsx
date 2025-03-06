@@ -3,9 +3,6 @@ import { useNavigate } from "react-router-dom";
 import {
   Home,
   Users,
-  Calendar,
-  FileText,
-  Settings,
   User,
   LogOut,
   GraduationCap,
@@ -32,15 +29,18 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
     navigate("/login");
   };
 
+  const handleSectionChange = (section: string) => {
+    onSectionChange(section);
+    setSidebarOpen(false);
+    navigate(`/dashboard?slug=${section}`, { replace: true });
+  };
+
   const menuItems = [
     { id: "overview", label: "Vue d'ensemble", icon: Home },
     { id: "participants", label: "Participants", icon: Users },
     { id: "panelists", label: "Panélistes", icon: User },
     { id: "students", label: "Étudiants", icon: GraduationCap },
     { id: "press", label: "Presse", icon: Newspaper },
-    { id: "program", label: "Programme", icon: Calendar },
-    { id: "documents", label: "Documents", icon: FileText },
-    { id: "settings", label: "Paramètres", icon: Settings },
   ];
 
   return (
@@ -57,12 +57,12 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
       </div>
 
       {/* Overlay for mobile sidebar */}
-      <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-40 ${
-          sidebarOpen ? "block" : "hidden"
-        } md:hidden`}
-        onClick={() => setSidebarOpen(false)}
-      />
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
 
       {/* Sidebar */}
       <div
@@ -85,10 +85,7 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
             {menuItems.map((item) => (
               <li key={item.id}>
                 <button
-                  onClick={() => {
-                    onSectionChange(item.id);
-                    setSidebarOpen(false); // close sidebar on mobile
-                  }}
+                  onClick={() => handleSectionChange(item.id)}
                   className={`w-full flex items-center py-2 px-3 rounded-md transition-colors ${
                     activeSection === item.id
                       ? "bg-galien-secondary/50 text-galien-blue font-medium"

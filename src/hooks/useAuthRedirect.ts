@@ -23,5 +23,5 @@ export const useAuthRedirect = () => {
     }
   }, [navigate, toast]);
 
-  return { activeSection, setActiveSection };
+  return { isLoggedIn, activeSection, setActiveSection };
 };

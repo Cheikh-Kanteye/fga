@@ -9,10 +9,11 @@ import {
   Download,
   Eye,
 } from "lucide-react";
-import { Participant } from "@/types/participants";
+import { Participant } from "@/types";
 import ParticipantModal from "./ParticipantModal";
 import { useToast } from "@/hooks/use-toast";
 import { initialParticipants } from "@/lib/dummy";
+import { Link } from "react-router-dom";
 
 const ParticipantsList: React.FC = () => {
   const [participants, setParticipants] =
@@ -302,15 +303,13 @@ const ParticipantsList: React.FC = () => {
                       >
                         <Trash className="h-5 w-5" />
                       </button>
-                      <button
-                        onClick={() =>
-                          handleStatusChange(participant.id, "rejected")
-                        }
+                      <Link
+                        to={"/dashboard/participants/" + participant.id}
                         className="text-blue-600 hover:text-blue-900"
                         title="Voir infos"
                       >
                         <Eye className="h-5 w-5" />
-                      </button>
+                      </Link>
                     </div>
                   </td>
                 </tr>

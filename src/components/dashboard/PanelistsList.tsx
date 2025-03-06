@@ -1,56 +1,59 @@
-
-import React, { useState } from 'react';
-import { 
-  Search, 
-  UserPlus, 
-  Trash, 
-  PenSquare, 
-  Check, 
-  X, 
-  Download
-} from 'lucide-react';
-import { Participant } from '@/types/participants';
-import ParticipantModal from './ParticipantModal';
+import React, { useState } from "react";
+import {
+  Search,
+  UserPlus,
+  Trash,
+  PenSquare,
+  Check,
+  X,
+  Download,
+  Eye,
+} from "lucide-react";
+import { Participant } from "@/types";
+import ParticipantModal from "./ParticipantModal";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 // Sample data for demonstration
 const initialPanelists: Participant[] = [
   {
-    id: '101',
-    firstName: 'Sophie',
-    lastName: 'Mbengue',
-    email: 'sophie.mbengue@example.com',
-    organization: 'Université de Dakar',
-    country: 'Sénégal',
-    phone: '+221 77 234 56 78',
-    registrationDate: '2023-09-15',
-    type: 'panelist',
-    status: 'approved'
+    id: "101",
+    firstName: "Sophie",
+    lastName: "Mbengue",
+    email: "sophie.mbengue@example.com",
+    organization: "Université de Dakar",
+    country: "Sénégal",
+    phone: "+221 77 234 56 78",
+    registrationDate: "2023-09-15",
+    type: "panelist",
+    status: "approved",
   },
   {
-    id: '102',
-    firstName: 'Marc',
-    lastName: 'Kouamé',
-    email: 'marc.kouame@example.com',
-    organization: 'Institut National de Santé Publique',
-    country: 'Côte d\'Ivoire',
-    phone: '+225 07 12 34 56',
-    registrationDate: '2023-09-20',
-    type: 'panelist',
-    status: 'approved'
-  }
+    id: "102",
+    firstName: "Marc",
+    lastName: "Kouamé",
+    email: "marc.kouame@example.com",
+    organization: "Institut National de Santé Publique",
+    country: "Côte d'Ivoire",
+    phone: "+225 07 12 34 56",
+    registrationDate: "2023-09-20",
+    type: "panelist",
+    status: "approved",
+  },
 ];
 
 const PanelistsList: React.FC = () => {
   const [panelists, setPanelists] = useState<Participant[]>(initialPanelists);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentPanelist, setCurrentPanelist] = useState<Participant | null>(null);
+  const [currentPanelist, setCurrentPanelist] = useState<Participant | null>(
+    null
+  );
   const [isEditing, setIsEditing] = useState(false);
   const { toast } = useToast();
 
   const filteredPanelists = panelists.filter(
-    panelist => 
+    (panelist) =>
       panelist.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       panelist.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       panelist.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -70,8 +73,8 @@ const PanelistsList: React.FC = () => {
   };
 
   const handleDeletePanelist = (id: string) => {
-    if (window.confirm('Êtes-vous sûr de vouloir supprimer ce panéliste ?')) {
-      setPanelists(panelists.filter(p => p.id !== id));
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer ce panéliste ?")) {
+      setPanelists(panelists.filter((p) => p.id !== id));
       toast({
         title: "Panéliste supprimé",
         description: "Le panéliste a été supprimé avec succès.",
@@ -79,19 +82,20 @@ const PanelistsList: React.FC = () => {
     }
   };
 
-  const handleStatusChange = (id: string, newStatus: 'approved' | 'rejected' | 'pending') => {
+  const handleStatusChange = (
+    id: string,
+    newStatus: "approved" | "rejected" | "pending"
+  ) => {
     setPanelists(
-      panelists.map(p => 
-        p.id === id ? { ...p, status: newStatus } : p
-      )
+      panelists.map((p) => (p.id === id ? { ...p, status: newStatus } : p))
     );
-    
+
     const statusMessages = {
       approved: "La participation a été approuvée.",
       rejected: "La participation a été rejetée.",
-      pending: "La participation est en attente de validation."
+      pending: "La participation est en attente de validation.",
     };
-    
+
     toast({
       title: "Statut mis à jour",
       description: statusMessages[newStatus],
@@ -100,9 +104,7 @@ const PanelistsList: React.FC = () => {
 
   const handleSavePanelist = (panelist: Participant) => {
     if (isEditing) {
-      setPanelists(
-        panelists.map(p => p.id === panelist.id ? panelist : p)
-      );
+      setPanelists(panelists.map((p) => (p.id === panelist.id ? panelist : p)));
       toast({
         title: "Panéliste modifié",
         description: "Les informations du panéliste ont été mises à jour.",
@@ -111,9 +113,9 @@ const PanelistsList: React.FC = () => {
       const newPanelist = {
         ...panelist,
         id: Date.now().toString(),
-        registrationDate: new Date().toISOString().split('T')[0],
-        type: 'panelist' as const,
-        status: 'pending' as const
+        registrationDate: new Date().toISOString().split("T")[0],
+        type: "panelist" as const,
+        status: "pending" as const,
       };
       setPanelists([...panelists, newPanelist]);
       toast({
@@ -125,8 +127,17 @@ const PanelistsList: React.FC = () => {
   };
 
   const downloadCSV = () => {
-    const headers = ['Prénom', 'Nom', 'Email', 'Organisation', 'Pays', 'Téléphone', 'Date inscription', 'Statut'];
-    const dataRows = panelists.map(p => [
+    const headers = [
+      "Prénom",
+      "Nom",
+      "Email",
+      "Organisation",
+      "Pays",
+      "Téléphone",
+      "Date inscription",
+      "Statut",
+    ];
+    const dataRows = panelists.map((p) => [
       p.firstName,
       p.lastName,
       p.email,
@@ -134,19 +145,19 @@ const PanelistsList: React.FC = () => {
       p.country,
       p.phone,
       p.registrationDate,
-      p.status
+      p.status,
     ]);
-    
+
     const csvContent = [
-      headers.join(','),
-      ...dataRows.map(row => row.join(','))
-    ].join('\n');
-    
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      headers.join(","),
+      ...dataRows.map((row) => row.join(",")),
+    ].join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.setAttribute('href', url);
-    link.setAttribute('download', 'panelists.csv');
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", "panelists.csv");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -154,25 +165,30 @@ const PanelistsList: React.FC = () => {
 
   const getStatusBadgeClass = (status: string) => {
     switch (status) {
-      case 'approved': return 'bg-green-100 text-green-800';
-      case 'rejected': return 'bg-red-100 text-red-800';
-      default: return 'bg-yellow-100 text-yellow-800';
+      case "approved":
+        return "bg-green-100 text-green-800";
+      case "rejected":
+        return "bg-red-100 text-red-800";
+      default:
+        return "bg-yellow-100 text-yellow-800";
     }
   };
 
   return (
     <div className="bg-white rounded-lg shadow-sm p-6">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-galien-blue">Gestion des Panélistes</h2>
+        <h2 className="text-2xl font-bold text-galien-blue">
+          Gestion des Panélistes
+        </h2>
         <div className="flex gap-2">
-          <button 
+          <button
             onClick={downloadCSV}
             className="btn-secondary py-2 px-4 flex items-center text-sm"
           >
             <Download className="h-4 w-4 mr-2" />
             Exporter CSV
           </button>
-          <button 
+          <button
             onClick={handleAddPanelist}
             className="btn-primary py-2 px-4 flex items-center text-sm"
           >
@@ -181,7 +197,7 @@ const PanelistsList: React.FC = () => {
           </button>
         </div>
       </div>
-      
+
       <div className="relative mb-6">
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
           <Search className="h-5 w-5 text-gray-400" />
@@ -194,27 +210,45 @@ const PanelistsList: React.FC = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-      
+
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
                 Nom
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
                 Email
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
                 Organisation
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
                 Pays
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
                 Statut
               </th>
-              <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th
+                scope="col"
+                className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
                 Actions
               </th>
             </tr>
@@ -229,33 +263,50 @@ const PanelistsList: React.FC = () => {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-500">{panelist.email}</div>
+                    <div className="text-sm text-gray-500">
+                      {panelist.email}
+                    </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-500">{panelist.organization}</div>
+                    <div className="text-sm text-gray-500">
+                      {panelist.organization}
+                    </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-500">{panelist.country}</div>
+                    <div className="text-sm text-gray-500">
+                      {panelist.country}
+                    </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusBadgeClass(panelist.status)}`}>
-                      {panelist.status === 'approved' ? 'Approuvé' : 
-                       panelist.status === 'rejected' ? 'Rejeté' : 'En attente'}
+                    <span
+                      className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusBadgeClass(
+                        panelist.status
+                      )}`}
+                    >
+                      {panelist.status === "approved"
+                        ? "Approuvé"
+                        : panelist.status === "rejected"
+                        ? "Rejeté"
+                        : "En attente"}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <div className="flex gap-2 justify-end">
-                      {panelist.status === 'pending' && (
+                      {panelist.status === "pending" && (
                         <>
-                          <button 
-                            onClick={() => handleStatusChange(panelist.id, 'approved')}
+                          <button
+                            onClick={() =>
+                              handleStatusChange(panelist.id, "approved")
+                            }
                             className="text-green-600 hover:text-green-900"
                             title="Approuver"
                           >
                             <Check className="h-5 w-5" />
                           </button>
-                          <button 
-                            onClick={() => handleStatusChange(panelist.id, 'rejected')}
+                          <button
+                            onClick={() =>
+                              handleStatusChange(panelist.id, "rejected")
+                            }
                             className="text-red-600 hover:text-red-900"
                             title="Rejeter"
                           >
@@ -263,27 +314,37 @@ const PanelistsList: React.FC = () => {
                           </button>
                         </>
                       )}
-                      <button 
+                      <button
                         onClick={() => handleEditPanelist(panelist)}
                         className="text-indigo-600 hover:text-indigo-900"
                         title="Modifier"
                       >
                         <PenSquare className="h-5 w-5" />
                       </button>
-                      <button 
+                      <button
                         onClick={() => handleDeletePanelist(panelist.id)}
                         className="text-red-600 hover:text-red-900"
                         title="Supprimer"
                       >
                         <Trash className="h-5 w-5" />
                       </button>
+                      <Link
+                        to={"/dashboard/panelistes/" + panelist.id}
+                        className="text-blue-600 hover:text-blue-900"
+                        title="Voir infos"
+                      >
+                        <Eye className="h-5 w-5" />
+                      </Link>
                     </div>
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan={6} className="px-6 py-4 text-center text-sm text-gray-500">
+                <td
+                  colSpan={6}
+                  className="px-6 py-4 text-center text-sm text-gray-500"
+                >
                   Aucun panéliste trouvé
                 </td>
               </tr>
@@ -291,7 +352,7 @@ const PanelistsList: React.FC = () => {
           </tbody>
         </table>
       </div>
-      
+
       {isModalOpen && (
         <ParticipantModal
           isOpen={isModalOpen}

@@ -1,4 +1,4 @@
-import { Participant } from "@/types/participants";
+import { Participant } from "@/types";
 
 // Sample data for demonstration
 export const initialParticipants: Participant[] = [

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
 import DashboardSidebar from "./DashboardSidebar";
 import { useAuthRedirect } from "@/hooks/useAuthRedirect";
+import ParticipantDetails from "./PartcipantDetails";
 
 const DashboardDetail = () => {
   const { activeSection, setActiveSection } = useAuthRedirect();
@@ -14,7 +14,7 @@ const DashboardDetail = () => {
         />
 
         <div className="flex-1 h-screen hover:overflow-y-auto pb-10 scrollbar">
-          <h1>Details</h1>
+          <ParticipantDetails />
         </div>
       </div>
     </main>
