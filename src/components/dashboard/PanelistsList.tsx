@@ -13,34 +13,7 @@ import { Participant } from "@/types";
 import ParticipantModal from "./ParticipantModal";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
-
-// Sample data for demonstration
-const initialPanelists: Participant[] = [
-  {
-    id: "101",
-    firstName: "Sophie",
-    lastName: "Mbengue",
-    email: "sophie.mbengue@example.com",
-    organization: "Université de Dakar",
-    country: "Sénégal",
-    phone: "+221 77 234 56 78",
-    registrationDate: "2023-09-15",
-    type: "panelist",
-    status: "approved",
-  },
-  {
-    id: "102",
-    firstName: "Marc",
-    lastName: "Kouamé",
-    email: "marc.kouame@example.com",
-    organization: "Institut National de Santé Publique",
-    country: "Côte d'Ivoire",
-    phone: "+225 07 12 34 56",
-    registrationDate: "2023-09-20",
-    type: "panelist",
-    status: "approved",
-  },
-];
+import { initialPanelists } from "@/lib/dummy";
 
 const PanelistsList: React.FC = () => {
   const [panelists, setPanelists] = useState<Participant[]>(initialPanelists);
@@ -329,7 +302,7 @@ const PanelistsList: React.FC = () => {
                         <Trash className="h-5 w-5" />
                       </button>
                       <Link
-                        to={"/dashboard/panelistes/" + panelist.id}
+                        to={"/dashboard/panelists/" + panelist.id}
                         className="text-blue-600 hover:text-blue-900"
                         title="Voir infos"
                       >

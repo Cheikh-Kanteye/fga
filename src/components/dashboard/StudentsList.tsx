@@ -13,34 +13,7 @@ import { Participant } from "@/types";
 import ParticipantModal from "./ParticipantModal";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
-
-// Sample data for demonstration
-const initialStudents: Participant[] = [
-  {
-    id: "201",
-    firstName: "Fatou",
-    lastName: "Diop",
-    email: "fatou.diop@student.example.com",
-    organization: "Université Cheikh Anta Diop",
-    country: "Sénégal",
-    phone: "+221 77 345 67 89",
-    registrationDate: "2023-10-02",
-    type: "student",
-    status: "approved",
-  },
-  {
-    id: "202",
-    firstName: "Kofi",
-    lastName: "Mensah",
-    email: "kofi.mensah@student.example.com",
-    organization: "University of Ghana",
-    country: "Ghana",
-    phone: "+233 24 123 4567",
-    registrationDate: "2023-10-05",
-    type: "student",
-    status: "pending",
-  },
-];
+import { initialStudents } from "@/lib/dummy";
 
 const StudentsList: React.FC = () => {
   const [students, setStudents] = useState<Participant[]>(initialStudents);
