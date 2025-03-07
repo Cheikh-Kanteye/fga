@@ -1,8 +1,11 @@
 import React, { memo } from "react";
+import { useTranslation } from "react-i18next";
 import { SpecificFieldsProps } from "@/types";
 
 const SpecificFields: React.FC<SpecificFieldsProps> = memo(
   ({ currentType, register }) => {
+    const { t } = useTranslation();
+
     switch (currentType) {
       case "student":
         return (
@@ -10,7 +13,7 @@ const SpecificFields: React.FC<SpecificFieldsProps> = memo(
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="university" className="form-label">
-                  Université / École*
+                  {t("register.university_school")}*
                 </label>
                 <input
                   {...register("university")}
@@ -21,7 +24,7 @@ const SpecificFields: React.FC<SpecificFieldsProps> = memo(
               </div>
               <div>
                 <label htmlFor="studyField" className="form-label">
-                  Domaine d'études*
+                  {t("register.field_of_study")}*
                 </label>
                 <input
                   {...register("studyField")}
@@ -34,7 +37,7 @@ const SpecificFields: React.FC<SpecificFieldsProps> = memo(
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="studyLevel" className="form-label">
-                  Niveau d'études*
+                  {t("register.level_of_study")}*
                 </label>
                 <select
                   {...register("studyLevel")}
@@ -42,16 +45,16 @@ const SpecificFields: React.FC<SpecificFieldsProps> = memo(
                   className="form-input"
                   required
                 >
-                  <option value="">Sélectionner</option>
-                  <option value="licence">Licence</option>
-                  <option value="master">Master</option>
-                  <option value="doctorat">Doctorat</option>
-                  <option value="autre">Autre</option>
+                  <option value="">{t("register.select")}</option>
+                  <option value="licence">{t("register.bachelor")}</option>
+                  <option value="master">{t("register.master")}</option>
+                  <option value="doctorat">{t("register.phd")}</option>
+                  <option value="autre">{t("register.other")}</option>
                 </select>
               </div>
               <div>
                 <label htmlFor="studentId" className="form-label">
-                  Numéro d'étudiant*
+                  {t("register.student_number")}*
                 </label>
                 <input
                   {...register("studentId")}
@@ -69,7 +72,7 @@ const SpecificFields: React.FC<SpecificFieldsProps> = memo(
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="mediaOutlet" className="form-label">
-                  Média*
+                  {t("register.media")}*
                 </label>
                 <input
                   {...register("mediaOutlet")}
@@ -80,7 +83,7 @@ const SpecificFields: React.FC<SpecificFieldsProps> = memo(
               </div>
               <div>
                 <label htmlFor="pressCardNumber" className="form-label">
-                  Numéro de carte de presse*
+                  {t("register.press_card_number")}*
                 </label>
                 <input
                   {...register("pressCardNumber")}
@@ -92,7 +95,7 @@ const SpecificFields: React.FC<SpecificFieldsProps> = memo(
             </div>
             <div>
               <label htmlFor="coverageType" className="form-label">
-                Type de couverture*
+                {t("register.coverage_type")}*
               </label>
               <select
                 {...register("coverageType")}
@@ -100,13 +103,13 @@ const SpecificFields: React.FC<SpecificFieldsProps> = memo(
                 className="form-input"
                 required
               >
-                <option value="">Sélectionner</option>
-                <option value="print">Presse écrite</option>
-                <option value="online">Presse en ligne</option>
-                <option value="radio">Radio</option>
-                <option value="tv">Télévision</option>
-                <option value="photo">Photographie</option>
-                <option value="autre">Autre</option>
+                <option value="">{t("register.select")}</option>
+                <option value="print">{t("register.print_press")}</option>
+                <option value="online">{t("register.online_press")}</option>
+                <option value="radio">{t("register.radio")}</option>
+                <option value="tv">{t("register.television")}</option>
+                <option value="photo">{t("register.photography")}</option>
+                <option value="autre">{t("register.other")}</option>
               </select>
             </div>
           </div>
@@ -117,7 +120,7 @@ const SpecificFields: React.FC<SpecificFieldsProps> = memo(
           <div className="space-y-4">
             <div>
               <label htmlFor="bio" className="form-label">
-                Biographie (max. 300 mots)*
+                {t("register.biography")} (max. 300 {t("register.words")})*
               </label>
               <textarea
                 {...register("bio")}
@@ -129,27 +132,27 @@ const SpecificFields: React.FC<SpecificFieldsProps> = memo(
             </div>
             <div>
               <label htmlFor="expertise" className="form-label">
-                Domaines d'expertise*
+                {t("register.areas_of_expertise")}*
               </label>
               <input
                 {...register("expertise")}
                 id="expertise"
                 className="form-input"
                 required
-                placeholder="Ex: Santé publique, Innovation médicale, Politique de santé"
+                placeholder={t("register.expertise_placeholder")}
               />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="speakingLanguages" className="form-label">
-                  Langues parlées*
+                  {t("register.spoken_languages")}*
                 </label>
                 <input
                   {...register("speakingLanguages")}
                   id="speakingLanguages"
                   className="form-input"
                   required
-                  placeholder="Ex: Français, Anglais, Arabe"
+                  placeholder={t("register.languages_placeholder")}
                 />
               </div>
               <div className="flex items-center">
@@ -163,7 +166,7 @@ const SpecificFields: React.FC<SpecificFieldsProps> = memo(
                   htmlFor="previousParticipation"
                   className="form-label m-0"
                 >
-                  J'ai déjà participé à une édition précédente du Forum Galien
+                  {t("register.previous_participation")}
                 </label>
               </div>
             </div>

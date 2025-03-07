@@ -13,34 +13,7 @@ import { Participant } from "@/types";
 import ParticipantModal from "./ParticipantModal";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
-
-// Sample data for demonstration
-const initialPress: Participant[] = [
-  {
-    id: "301",
-    firstName: "Amadou",
-    lastName: "Camara",
-    email: "amadou.camara@press.example.com",
-    organization: "Africa News Network",
-    country: "Sénégal",
-    phone: "+221 77 456 78 90",
-    registrationDate: "2023-09-28",
-    type: "press",
-    status: "approved",
-  },
-  {
-    id: "302",
-    firstName: "Aisha",
-    lastName: "Okafor",
-    email: "aisha.okafor@press.example.com",
-    organization: "Health Africa Today",
-    country: "Nigeria",
-    phone: "+234 80 1234 5678",
-    registrationDate: "2023-10-01",
-    type: "press",
-    status: "pending",
-  },
-];
+import { initialPress } from "@/lib/dummy";
 
 const PressList: React.FC = () => {
   const [pressMembers, setPressMembers] = useState<Participant[]>(initialPress);

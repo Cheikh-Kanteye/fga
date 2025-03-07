@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import {
   initialPanelists,
   initialParticipants,
+  initialPress,
   initialStudents,
 } from "@/lib/dummy";
 
@@ -48,6 +49,8 @@ const DashboardDetail = () => {
       setData(initialPanelists);
     } else if (slug === "students") {
       setData(initialStudents);
+    } else if (slug === "press") {
+      setData(initialPress);
     }
   }, [slug]);
 

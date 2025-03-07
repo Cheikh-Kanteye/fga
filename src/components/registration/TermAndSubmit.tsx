@@ -1,8 +1,11 @@
 import React, { memo } from "react";
 import { TermsAndSubmitProps } from "@/types";
+import { useTranslation } from "react-i18next";
 
 const TermsAndSubmit: React.FC<TermsAndSubmitProps> = memo(
   ({ step, getMaxSteps, isSubmittingState, onPrev }) => {
+    const { t } = useTranslation();
+
     return (
       <div className="space-y-4">
         <div className="flex justify-between pt-6">
@@ -47,9 +50,9 @@ const TermsAndSubmit: React.FC<TermsAndSubmitProps> = memo(
                 Traitement en cours...
               </span>
             ) : step < getMaxSteps() ? (
-              "Continuer"
+              t("register.next")
             ) : (
-              "Soumettre ma demande"
+              t("register.submit")
             )}
           </button>
         </div>

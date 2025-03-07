@@ -1,4 +1,4 @@
-import { Participant } from "@/types";
+import { Participant, ParticipantType } from "@/types";
 
 // Sample data for demonstration
 export const initialParticipants: Participant[] = [
@@ -95,3 +95,59 @@ export const initialStudents: Participant[] = [
     status: "pending",
   },
 ];
+
+// Sample data for demonstration
+export const initialPress: Participant[] = [
+  {
+    id: "301",
+    firstName: "Amadou",
+    lastName: "Camara",
+    email: "amadou.camara@press.example.com",
+    organization: "Africa News Network",
+    country: "Sénégal",
+    phone: "+221 77 456 78 90",
+    registrationDate: "2023-09-28",
+    type: "press",
+    status: "approved",
+  },
+  {
+    id: "302",
+    firstName: "Aisha",
+    lastName: "Okafor",
+    email: "aisha.okafor@press.example.com",
+    organization: "Health Africa Today",
+    country: "Nigeria",
+    phone: "+234 80 1234 5678",
+    registrationDate: "2023-10-01",
+    type: "press",
+    status: "pending",
+  },
+];
+
+export const defaultRegisterFormValue = (defaultType: ParticipantType) => ({
+  participantType: defaultType,
+  isInternational: defaultType === "international",
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  country: "",
+  city: "",
+  organization: "",
+  position: "",
+  flightDetails: "",
+  accommodationNeeded: false,
+  accommodationDates: "",
+  dietaryRestrictions: "",
+  university: "",
+  studyField: "",
+  studyLevel: "",
+  studentId: "",
+  mediaOutlet: "",
+  pressCardNumber: "",
+  coverageType: "",
+  bio: "",
+  expertise: "",
+  previousParticipation: false,
+  speakingLanguages: "",
+});

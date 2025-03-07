@@ -1,14 +1,17 @@
 import { PersonalInfoProps } from "@/types";
 import { memo } from "react";
+import { useTranslation } from "react-i18next";
 
 const PersonalInfoForm: React.FC<PersonalInfoProps> = memo(
   ({ register, errors }) => {
+    const { t } = useTranslation();
+
     return (
       <div className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label htmlFor="firstName" className="form-label">
-              Prénom*
+              {t("register.first_name")}*
             </label>
             <input
               {...register("firstName")}
@@ -16,11 +19,13 @@ const PersonalInfoForm: React.FC<PersonalInfoProps> = memo(
               className="form-input"
               required
             />
-            {errors.firstName && <p>{errors.firstName.message}</p>}
+            {errors.firstName && (
+              <p>{t(`register.${errors.firstName.message}`)}</p>
+            )}
           </div>
           <div>
             <label htmlFor="lastName" className="form-label">
-              Nom*
+              {t("register.last_name")}*
             </label>
             <input
               {...register("lastName")}
@@ -28,14 +33,16 @@ const PersonalInfoForm: React.FC<PersonalInfoProps> = memo(
               className="form-input"
               required
             />
-            {errors.lastName && <p>{errors.lastName.message}</p>}
+            {errors.lastName && (
+              <p>{t(`register.${errors.lastName.message}`)}</p>
+            )}
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label htmlFor="email" className="form-label">
-              Email*
+              {t("register.email")}*
             </label>
             <input
               {...register("email")}
@@ -44,11 +51,11 @@ const PersonalInfoForm: React.FC<PersonalInfoProps> = memo(
               className="form-input"
               required
             />
-            {errors.email && <p>{errors.email.message}</p>}
+            {errors.email && <p>{t(`register.${errors.email.message}`)}</p>}
           </div>
           <div>
             <label htmlFor="phone" className="form-label">
-              Téléphone*
+              {t("register.phone")}*
             </label>
             <input
               {...register("phone")}
@@ -57,14 +64,14 @@ const PersonalInfoForm: React.FC<PersonalInfoProps> = memo(
               className="form-input"
               required
             />
-            {errors.phone && <p>{errors.phone.message}</p>}
+            {errors.phone && <p>{t(`register.${errors.phone.message}`)}</p>}
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label htmlFor="country" className="form-label">
-              Pays*
+              {t("register.country")}*
             </label>
             <input
               {...register("country")}
@@ -72,11 +79,11 @@ const PersonalInfoForm: React.FC<PersonalInfoProps> = memo(
               className="form-input"
               required
             />
-            {errors.country && <p>{errors.country.message}</p>}
+            {errors.country && <p>{t(`register.${errors.country.message}`)}</p>}
           </div>
           <div>
             <label htmlFor="city" className="form-label">
-              Ville*
+              {t("register.city")}*
             </label>
             <input
               {...register("city")}
@@ -84,14 +91,14 @@ const PersonalInfoForm: React.FC<PersonalInfoProps> = memo(
               className="form-input"
               required
             />
-            {errors.city && <p>{errors.city.message}</p>}
+            {errors.city && <p>{t(`register.${errors.city.message}`)}</p>}
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label htmlFor="organization" className="form-label">
-              Organisation / Institution*
+              {t("register.organization")}*
             </label>
             <input
               {...register("organization")}
@@ -99,11 +106,13 @@ const PersonalInfoForm: React.FC<PersonalInfoProps> = memo(
               className="form-input"
               required
             />
-            {errors.organization && <p>{errors.organization.message}</p>}
+            {errors.organization && (
+              <p>{t(`register.${errors.organization.message}`)}</p>
+            )}
           </div>
           <div>
             <label htmlFor="position" className="form-label">
-              Fonction / Position*
+              {t("register.position")}*
             </label>
             <input
               {...register("position")}
@@ -111,7 +120,9 @@ const PersonalInfoForm: React.FC<PersonalInfoProps> = memo(
               className="form-input"
               required
             />
-            {errors.position && <p>{errors.position.message}</p>}
+            {errors.position && (
+              <p>{t(`register.${errors.position.message}`)}</p>
+            )}
           </div>
         </div>
       </div>
