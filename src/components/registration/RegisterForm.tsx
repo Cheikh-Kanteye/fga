@@ -12,6 +12,7 @@ import FormStep from "./FormStep";
 import FormTab from "./FormTab";
 import SuccessAlert from "./SuccessAlert";
 import { defaultRegisterFormValue } from "@/lib/dummy";
+import prepareFormData from "@/utils/prepareFormData";
 
 // Main RegisterForm component
 const RegisterForm: React.FC<RegisterFormProps> = ({
@@ -70,13 +71,15 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   };
 
   const onSubmit = (data: FormData) => {
+    const formatedData = prepareFormData(data);
+
     if (step < getMaxSteps()) {
       setStep((prev) => prev + 1);
       return;
     }
     setIsSubmittingState(true);
     setTimeout(() => {
-      console.log("Form submitted:", data);
+      console.log("Form submitted:", formatedData);
       setIsSubmittingState(false);
       setIsSuccess(true);
       if (onSuccess) onSuccess();

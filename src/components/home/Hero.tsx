@@ -18,7 +18,7 @@ const Hero: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-up">
             <div className="badge-primary inline-block">
-              Forum Galien Afrique 2024
+              Forum Galien Afrique {new Date().getFullYear()}
             </div>
 
             <h1 className="heading-xl">{t("hero.title")}</h1>
